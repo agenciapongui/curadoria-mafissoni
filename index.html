@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curadoria de vídeos · Mafissoni Advocacia · Pongui</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-elev: #141414;
+    --bg-card: #1a1a1a;
+    --ink: #f4f1ea;
+    --ink-mute: #a8a39a;
+    --ink-dim: #6b6760;
+    --rule: #2a2a2a;
+    --orange: #ff6b1a;
+    --orange-soft: #ffa66d;
+    --green: #4ade80;
+    --green-soft: #86efac;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Outfit', system-ui, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    font-size: clamp(15px, 1.5vw, 17px);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  img, video { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); }
+  .wrap-tight { max-width: 880px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); }
+
+  .nav-strip {
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 0;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .nav-strip .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .brand { color: var(--orange); font-weight: 500; }
+
+  .hero { padding: clamp(64px, 10vw, 120px) 0 clamp(56px, 9vw, 100px); border-bottom: 1px solid var(--rule); }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: clamp(20px, 3vw, 32px);
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(34px, 6.2vw, 72px);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    margin-bottom: clamp(24px, 3.5vw, 36px);
+  }
+  .hero h1 em { font-style: italic; color: var(--orange-soft); font-weight: 300; }
+  .hero .lede {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: var(--ink-mute);
+    max-width: 720px;
+    line-height: 1.55;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: clamp(20px, 3vw, 32px);
+    margin-top: clamp(40px, 6vw, 64px);
+    padding-top: clamp(28px, 4vw, 36px);
+    border-top: 1px solid var(--rule);
+  }
+  .meta-item .label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+  }
+  .meta-item .value {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .section { padding: clamp(56px, 8vw, 100px) 0 clamp(48px, 7vw, 80px); border-bottom: 1px solid var(--rule); }
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 24px;
+  }
+  .section-eyebrow .num { color: var(--orange); font-weight: 500; }
+  .section h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4.6vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(20px, 3vw, 28px);
+    max-width: 900px;
+  }
+  .section h2 em { font-style: italic; color: var(--orange-soft); font-weight: 300; }
+  .section .intro { color: var(--ink-mute); font-size: clamp(15px, 1.7vw, 18px); max-width: 720px; line-height: 1.6; }
+
+  .route-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 18px;
+    background: rgba(255, 107, 26, 0.1);
+    border: 1px solid rgba(255, 107, 26, 0.3);
+    border-radius: 999px;
+    margin-bottom: clamp(24px, 3.5vw, 36px);
+    font-size: clamp(11px, 1.2vw, 13px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 500;
+  }
+  .route-banner .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 12px var(--orange);
+    flex-shrink: 0;
+  }
+
+  .criativos-grid { display: grid; gap: clamp(36px, 5vw, 60px); margin-top: clamp(40px, 6vw, 64px); }
+  .criativo {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .criativo-header {
+    padding: clamp(22px, 3vw, 32px) clamp(22px, 3vw, 36px) clamp(18px, 2.5vw, 24px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .criativo-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .criativo-num {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 500;
+    color: var(--orange);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .criativo-num::before { content: "Nº "; font-size: 0.6em; color: var(--ink-dim); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+  .criativo-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    line-height: 1.4;
+  }
+  .criativo-title {
+    font-family: var(--serif);
+    font-size: clamp(19px, 2.4vw, 26px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  .criativo-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(74, 222, 128, 0.12);
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 999px;
+    color: var(--green-soft);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .criativo-body {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) 1fr;
+    gap: clamp(24px, 3.5vw, 36px);
+    padding: clamp(22px, 3vw, 36px);
+  }
+  @media (max-width: 820px) {
+    .criativo-body { grid-template-columns: 1fr; }
+  }
+
+  .video-wrap {
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 9 / 16;
+    position: relative;
+    border: 1px solid var(--rule);
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+  }
+  @media (max-width: 820px) {
+    .video-wrap { max-width: 320px; }
+  }
+  .video-wrap video { width: 100%; height: 100%; object-fit: contain; background: #000; display: block; position: relative; z-index: 2; }
+  .video-wrap.loaded .video-fallback { display: none; }
+  .video-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a1a, #0a0a0a);
+    color: var(--ink-mute);
+    font-size: 13px;
+    line-height: 1.5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .video-fallback span { color: var(--orange); margin-bottom: 8px; font-size: 22px; }
+
+  .criativo-details h4 {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.4vw, 15px);
+    font-weight: 500;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    margin-top: clamp(18px, 2.5vw, 22px);
+  }
+  .criativo-details h4:first-child { margin-top: 0; }
+  .criativo-details p { color: var(--ink-mute); font-size: clamp(14px, 1.5vw, 15px); line-height: 1.65; margin-bottom: 8px; }
+  .criativo-details strong { color: var(--ink); font-weight: 500; }
+
+  .source-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--green);
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 222, 128, 0.4);
+    padding-bottom: 1px;
+  }
+  .source-link:hover { color: var(--green-soft); border-bottom-color: var(--green-soft); }
+
+  .cta-box {
+    margin-top: clamp(20px, 3vw, 24px);
+    padding: clamp(14px, 2vw, 18px) clamp(16px, 2.5vw, 22px);
+    background: rgba(255, 107, 26, 0.06);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 4px 4px 0;
+  }
+  .cta-box .cta-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .cta-box .cta-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(15px, 1.7vw, 17px);
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .format-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 4px;
+  }
+  .format-pill {
+    padding: 4px 10px;
+    background: var(--bg-elev);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--ink-mute);
+    white-space: nowrap;
+  }
+
+  .cta-summary {
+    margin-top: clamp(40px, 6vw, 60px);
+    padding: clamp(24px, 3.5vw, 36px);
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .cta-summary h4 {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .cta-list { list-style: none; padding: 0; }
+  .cta-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-mute);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .cta-list li:last-child { border-bottom: none; }
+  .cta-list .opt-num {
+    color: var(--orange);
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 500;
+    min-width: 24px;
+    line-height: 1.4;
+  }
+  .cta-list .opt-text {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--ink);
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.45;
+  }
+
+  .closing { padding: clamp(64px, 9vw, 100px) 0 clamp(80px, 12vw, 140px); }
+  .closing h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4.8vw, 56px);
+    line-height: 1.1;
+    margin-bottom: clamp(20px, 3vw, 28px);
+    letter-spacing: -0.02em;
+  }
+  .closing h2 em { font-style: italic; color: var(--orange-soft); }
+  .closing p { color: var(--ink-mute); font-size: clamp(15px, 1.7vw, 18px); line-height: 1.65; margin-bottom: 16px; max-width: 720px; }
+
+  .signature {
+    margin-top: clamp(40px, 6vw, 56px);
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+  }
+  .signature strong { color: var(--orange); font-weight: 500; }
+
+  .runtime { display:inline-block; margin-left:8px; padding:4px 12px; border-radius:999px; font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--orange-soft); border:1px solid rgba(255,107,26,.3); background:rgba(255,107,26,.08); white-space:nowrap; }
+  .criativo-details ol { color: var(--ink-mute); font-size: clamp(14px,1.5vw,15px); line-height:1.65; padding-left: 20px; margin-bottom: 8px; }
+  .criativo-details ol li { margin-bottom: 6px; }
+  .nota { margin-top: 12px; padding: 12px 16px; border: 1px dashed rgba(255,107,26,.45); border-radius: 4px; color: var(--ink-mute); font-size: 14px; line-height: 1.6; }
+  .nota b { color: var(--orange-soft); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="nav-strip">
+  <div class="wrap">
+    <span class="brand">Pongui · Marketing Jurídico</span>
+    <span>Curadoria de vídeos · Novembro 2026</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap-tight">
+    <div class="eyebrow">Material de gravação · Mafissoni Advocacia</div>
+    <h1>Nove vídeos que estão no ar <em>há meses</em>, para vocês gravarem com segurança.</h1>
+    <p class="lede">Dra. Thamires e Dra. Julya, esta é a seleção de referências para a primeira gravação. Todos os vídeos estão rodando há pelo menos seis meses na Meta, e alguns passam de um ano. Ninguém mantém um anúncio por tanto tempo pagando do próprio bolso se ele não traz cliente. Cinco são de inventário e quatro de salário-maternidade, as duas áreas escolhidas para o teste.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="label">Cliente</div><div class="value">Mafissoni Advocacia</div></div>
+      <div class="meta-item"><div class="label">Áreas</div><div class="value">Inventário · Maternidade</div></div>
+      <div class="meta-item"><div class="label">Volume</div><div class="value">9 referências</div></div>
+      <div class="meta-item"><div class="label">Critério</div><div class="value">No ar há 6+ meses</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap-tight">
+    <div class="section-eyebrow"><span class="num">01</span> · Como ler este documento</div>
+    <h2>Assistam antes, gravem <em>com a cabeça de vocês</em>.</h2>
+    <p class="intro">Cada vídeo tem três blocos: por que ele foi escolhido, a estrutura do roteiro e como adaptar para a realidade do escritório. A ideia não é copiar fala por fala. É pegar a estrutura que já funciona e preencher com os casos, a linguagem e a região de vocês.</p>
+    <p class="intro" style="margin-top: 16px;">Escolhemos aberturas diferentes de propósito: pergunta de seguidor, medo concreto, valor em destaque, cenário rural, novidade da lei. Assim a Meta testa abordagens diferentes logo nas primeiras semanas e mostra qual traz mais contato no WhatsApp. Dividam os vídeos entre as duas como fizer mais sentido; uma área para cada também funciona bem.</p>
+
+    <div class="cta-summary">
+      <h4>As quatro frases de encerramento</h4>
+      <p style="color: var(--ink-mute); margin-bottom: 18px;">Todo vídeo termina com uma destas frases. É o convite final que leva a pessoa para o WhatsApp do escritório. A frase indicada para cada vídeo aparece em destaque no fim do card.</p>
+      <ul class="cta-list"><li><span class="opt-num">01</span><span class="opt-text">"Para mais informações sobre este conteúdo, clique em saiba mais."</span></li><li><span class="opt-num">02</span><span class="opt-text">"Dúvidas sobre este tema? Clique em saiba mais."</span></li><li><span class="opt-num">03</span><span class="opt-text">"Se você está passando por isso, fale com um advogado especialista."</span></li><li><span class="opt-num">04</span><span class="opt-text">"Para entender os seus direitos, fale com um advogado especialista."</span></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap-tight">
+    <div class="section-eyebrow"><span class="num">02</span> · Rota A</div>
+    <div class="route-banner"><span class="dot"></span>Direito de Família · Inventário</div>
+    <h2>Inventário: <em>cinco jeitos</em> de chegar na família que ainda não procurou advogado.</h2>
+    <p class="intro">O plano coloca o inventário na Meta para alcançar quem ainda não procurou ninguém. Os cinco vídeos abaixo cobrem as portas de entrada mais comuns: o prazo que passou, o medo de perder a casa, a fazenda sem organização, o imposto que muda e o caminho mais rápido pelo cartório. O vídeo 03 vem de planejamento com holding rural; entrou pela forma e pelo cenário, e a adaptação para inventário está explicada no card.</p>
+    <div class="criativos-grid">
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">01</span>
+            <span><span class="criativo-tag">Pergunta de seguidor</span><span class="runtime">No ar desde abr/2026</span></span>
+          </div>
+          <div class="criativo-label">Jeziane Pereira · advogada</div>
+          <h3 class="criativo-title">"Meus pais faleceram há 2 anos e ainda não abrimos o inventário. O que pode acontecer?"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-01.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>A abertura é uma pergunta real de quem segue a advogada, colada na tela como caixinha do Instagram. Quem está na mesma situação se reconhece no primeiro segundo, porque a pergunta usa as palavras do leigo e não as do advogado. A legenda faz o resto: prazo de 60 dias, multa sobre o imposto, bens travados. É o vídeo que conversa com a família que adiou o inventário e agora está com medo de ter feito besteira, e esse é exatamente o público que mais vai aparecer no Médio-Norte.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> a pergunta do seguidor na tela, lida em voz alta.</li><li><b>Resposta curta:</b> o que acontece quando o prazo passa (multa, bens que não podem ser vendidos, conta travada).</li><li><b>Alívio:</b> mesmo atrasado, dá para regularizar, e quanto antes, menor o prejuízo.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Usem uma pergunta que vocês já receberam no escritório, de preferência com o detalhe da região: fazenda ainda no nome do pai, caminhonete que não dá para transferir, conta do falecido bloqueada. Na resposta, falem da multa do ITCMD de Mato Grosso, que é o ponto que pesa no bolso de quem tem terra. O diferencial de vocês entra aqui como explicação de quem resolve esse problema toda semana na região; cada uma coloca com as próprias palavras.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 45 seg</span><span class="format-pill">Caixinha de pergunta na tela</span><span class="format-pill">Fala direto para a câmera</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=1619918735978351" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Se você está passando por isso, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">02</span>
+            <span><span class="criativo-tag">Medo concreto da viúva</span><span class="runtime">No ar desde abr/2026</span></span>
+          </div>
+          <div class="criativo-label">Dra. Marilucia Rocha · usucapião e inventário</div>
+          <h3 class="criativo-title">"Meu marido faleceu. Tenho que sair do imóvel para dividir a herança?"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-02.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>O título em caixa alta resolve o vídeo antes do áudio começar: quem perdeu o marido e tem filhos de outro casamento, ou herdeiros pressionando, sente o medo de perder a casa. É um medo específico, que gera clique de quem realmente está vivendo aquilo. A advogada aparece sorrindo e calma, o que equilibra a tensão do título. A mesma anunciante mantém outras variações nesse formato, sinal de que a fórmula está trazendo contato.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> o medo em forma de pergunta, escrito na tela.</li><li><b>Resposta direta:</b> sim ou não, sem enrolar, e em que situação a resposta muda.</li><li><b>O direito que a pessoa não conhece:</b> o direito de continuar morando no imóvel da família.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Mantenham a estrutura de pergunta com medo concreto e troquem o bem: a casa da cidade, a fazenda onde a família mora, o maquinário que o filho mais velho usa. Uma das doutoras grava a versão da casa; a outra pode gravar a da propriedade rural. Façam a resposta com segurança e sem juridiquês: a pessoa precisa sair do vídeo sabendo que tem direito e que vocês sabem explicar qual.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 55 seg</span><span class="format-pill">Título fixo na tela</span><span class="format-pill">Fala direto para a câmera</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=4447119958866741" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para entender os seus direitos, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">03</span>
+            <span><span class="criativo-tag">Produtor rural</span><span class="runtime">No ar desde mar/2026</span></span>
+          </div>
+          <div class="criativo-label">Marcia Pomatti · advogada</div>
+          <h3 class="criativo-title">"Sua propriedade precisa de proteção", gravado no meio da lavoura</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-03.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>É o vídeo mais alinhado com o público de vocês no Médio-Norte. A advogada grava dentro da plantação, e o cenário diz para quem é o vídeo antes de qualquer palavra. O tema original é planejamento com holding rural, mas a dor é a mesma do inventário: imposto e briga consumindo a terra que levou uma vida para ser construída. Entrou nesta seleção pela forma, que é o que vocês vão aproveitar.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> frase curta na tela falando com o produtor ("sua propriedade").</li><li><b>O risco:</b> o que acontece com a terra quando não há organização (imposto, divisão, venda forçada).</li><li><b>A saída:</b> que existe caminho legal para proteger a produção e a família.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Gravem em uma lavoura ou sede de fazenda da região, com luz da manhã. Troquem o tema de holding pelo inventário: a fazenda que continua no nome do pai que faleceu, o financiamento de safra que o banco não libera, o gado que não pode ser vendido. Aqui entra a presença de vocês em Nova Mutum: quem é da região reconhece a paisagem e entende que está falando com advogadas que conhecem a realidade do agro.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 55 seg</span><span class="format-pill">Gravado em área externa</span><span class="format-pill">Frase de impacto na tela</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=784985504225388" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para entender os seus direitos, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">04</span>
+            <span><span class="criativo-tag">Mais tempo no ar</span><span class="runtime">No ar desde ago/2025</span></span>
+          </div>
+          <div class="criativo-label">Inventário Nunca Mais · planejamento sucessório</div>
+          <h3 class="criativo-title">"ITCMD vai mudar. Se a família procrastina, o patrimônio é quem paga a conta."</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-04.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>Está rodando há mais de um ano, o maior tempo no ar entre os vídeos de inventário desta seleção. Anunciante não mantém por tanto tempo um vídeo que não traz cliente. A força está na urgência de imposto: mudança na lei, custo maior para quem demora. Em Mato Grosso isso é concreto, porque o ITCMD já é progressivo de 2% a 8% e a reforma tributária tornou a progressividade obrigatória.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> a notícia ("o imposto sobre herança mudou").</li><li><b>Consequência:</b> quem deixa para depois paga mais.</li><li><b>O que fazer agora:</b> resolver o inventário ou organizar a sucessão antes do custo subir.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Tragam o dado de Mato Grosso para dentro da fala: alíquota de 2% a 8%, que cresce conforme o valor dos bens, e multa para quem abre o inventário fora do prazo. Para quem tem fazenda, a diferença entre as alíquotas vira um valor que dá para sentir. A fala fica mais forte se a advogada citar a lei estadual com segurança, mostrando domínio técnico em vez de alarme.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Cerca de 1 min</span><span class="format-pill">Fala direto para a câmera</span><span class="format-pill">Cenário de escritório</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=625497077266990" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para mais informações sobre este conteúdo, clique em saiba mais."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">05</span>
+            <span><span class="criativo-tag">Inventário em cartório</span><span class="runtime">No ar desde abr/2026</span></span>
+          </div>
+          <div class="criativo-label">João Carlos · advogado</div>
+          <h3 class="criativo-title">"Inventário Extrajudicial", explicado em 46 segundos</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-05.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>Apareceu em primeiro lugar, por número de impressões, nas buscas por inventário e por inventário extrajudicial. Formato simples: o advogado sentado, enquadramento do peito para cima, tema escrito na tela. Ele resolve a dúvida de quem acha que inventário é sinônimo de anos de processo. Esse é o gancho que o plano de vocês já previa: em cartório é mais rápido e mais barato, e desde a Resolução 571 do CNJ dá para fazer até com herdeiro menor ou testamento, em condições específicas.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> o nome do caminho na tela ("Inventário em cartório").</li><li><b>O mito:</b> inventário não precisa ser processo longo na Justiça.</li><li><b>Quando dá para fazer em cartório:</b> requisitos em linguagem simples, incluindo a novidade do CNJ.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>É o vídeo mais fácil de gravar e o que melhor mostra domínio técnico. Escolham um exemplo da rotina de vocês para mostrar a diferença de tempo entre cartório e Justiça, sem prometer prazo. Vale gravar uma segunda versão só sobre a novidade do herdeiro menor, que pouca gente conhece e gera curiosidade.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 50 seg</span><span class="format-pill">Sentado, sem corte</span><span class="format-pill">Tema escrito na tela</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=1697718661377542" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para mais informações sobre este conteúdo, clique em saiba mais."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap-tight">
+    <div class="section-eyebrow"><span class="num">03</span> · Rota B</div>
+    <div class="route-banner"><span class="dot"></span>Direito Previdenciário · Salário-maternidade</div>
+    <h2>Salário-maternidade: <em>quatro mães</em> diferentes, quatro aberturas.</h2>
+    <p class="intro">Aqui o público é grande e, na maior parte, não sabe que tem direito. Os quatro vídeos falam com perfis diferentes: a MEI e a autônoma que agora não precisam de carência, a mãe que já recebeu um não do INSS, a trabalhadora rural e a mãe atraída por um valor concreto. O vídeo 09 tem uma observação técnica sobre a tese original; vale ler antes de gravar.</p>
+    <div class="criativos-grid">
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">06</span>
+            <span><span class="criativo-tag">Fim da carência</span><span class="runtime">No ar desde jan/2026</span></span>
+          </div>
+          <div class="criativo-label">Dr. Alysson Layon · previdenciário</div>
+          <h3 class="criativo-title">"Está grávida? Pode ter direito ao salário-maternidade com apenas 1 contribuição"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-06.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>É o tema central do plano para a rota de maternidade: depois da decisão do STF, MEI, autônoma e contribuinte individual não precisam mais de 10 contribuições. O vídeo coloca a pergunta "está grávida?" em uma caixa branca grande, que dá para ler mesmo no celular sem som. Curto, menos de 30 segundos, e direto no ponto que a mulher não sabe.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> pergunta que separa o público ("está grávida?" / "teve bebê nos últimos 5 anos?").</li><li><b>A novidade:</b> agora basta 1 contribuição para MEI e autônoma.</li><li><b>Quem tem direito:</b> lista curta de perfis.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Gravem duas versões. A primeira para a gestante, como no original. A segunda para a mãe que já teve o bebê nos últimos cinco anos e teve o pedido negado por falta de carência, porque essa tem valor retroativo e é o público que o plano mais quer alcançar. Para Cuiabá e Várzea Grande, citem a MEI e a autônoma; para o interior, encaixem a trabalhadora rural.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 30 seg</span><span class="format-pill">Caixa de texto grande</span><span class="format-pill">Fala direto para a câmera</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=751972091294702" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para entender os seus direitos, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">07</span>
+            <span><span class="criativo-tag">Benefício negado</span><span class="runtime">No ar desde set/2025</span></span>
+          </div>
+          <div class="criativo-label">Gabriela Barbosa Advogados</div>
+          <h3 class="criativo-title">"Você teve o seu salário-maternidade negado?"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-07.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>Mais de um ano no ar. Fala com a mulher que já tentou sozinha e recebeu um não do INSS, um público mais quente do que quem ainda nem pediu. A legenda acalma: a recusa costuma vir de falha de documento, e não significa que ela não tem direito. A advogada grava em pé, em área externa, com roupa vermelha que se destaca no feed.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> "seu salário-maternidade foi negado?"</li><li><b>Acalmar:</b> negativa não é o fim; muitas acontecem por erro de documento.</li><li><b>O que a advogada faz:</b> revisa o pedido e entra com recurso ou ação.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Reaproveitem a pergunta e expliquem as causas mais comuns de negativa que vocês já viram: carência que não era mais exigida, falta de prova da atividade rural, contribuição de MEI paga com atraso. Mostrar que conhecem o motivo da recusa é o que faz a mãe escrever. Se possível, gravem em frente a um lugar reconhecível de Cuiabá ou de Nova Mutum.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 25 seg</span><span class="format-pill">Em pé, área externa</span><span class="format-pill">Pergunta escrita na tela</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=1125315765706657" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Se você está passando por isso, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">08</span>
+            <span><span class="criativo-tag">Trabalhadora rural</span><span class="runtime">No ar desde fev/2025</span></span>
+          </div>
+          <div class="criativo-label">@adv.marianoepicelli · previdenciário</div>
+          <h3 class="criativo-title">"Você, segurada especial rural, tem direito ao salário-maternidade mesmo sem documento em seu nome"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-08.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>É o vídeo com mais tempo no ar de toda a seleção: quase dois anos rodando. Fala com a mãe do campo que acha que não tem direito porque a terra, as notas e o talão estão no nome do marido ou do pai. A advogada fala com tom de conversa, sem nenhum recurso de edição, e a legenda pede para compartilhar com outras mulheres rurais, o que espalha o vídeo sem custo.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> chamar o público pelo nome ("você, trabalhadora rural").</li><li><b>A crença errada:</b> "não tenho documento no meu nome, então não tenho direito".</li><li><b>A verdade:</b> documentos da família servem como prova.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo, mais o pedido para marcar uma amiga.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Este é o vídeo do interior de Mato Grosso. A própria Justiça Federal no estado criou uma portaria só para organizar as ações de salário-maternidade rural, o que mostra o volume de casos. Citem os documentos que essas famílias realmente têm: bloco de produtor, contrato de arrendamento, declaração do sindicato. Tom simples, de conversa, sem termos técnicos.</p>
+            
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 25 seg</span><span class="format-pill">Sem edição</span><span class="format-pill">Tom de conversa</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=1291955388728534" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Para entender os seus direitos, fale com um advogado especialista."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="criativo">
+        <header class="criativo-header">
+          <div class="criativo-top">
+            <span class="criativo-num">09</span>
+            <span><span class="criativo-tag">Valor na tela</span><span class="runtime">No ar desde jan/2026</span></span>
+          </div>
+          <div class="criativo-label">David Rodrigues · advogado</div>
+          <h3 class="criativo-title">"1 criança, 2 salários-maternidade, até R$ 12 mil de benefício"</h3>
+        </header>
+        <div class="criativo-body">
+          <div class="video-wrap">
+            <div class="video-fallback"><span>▶</span>Carregando vídeo…</div>
+            <video controls preload="metadata" playsinline src="criativos/mafissoni-09.mp4"></video>
+          </div>
+          <div class="criativo-details">
+            <h4>Por que esse foi escolhido</h4>
+            <p>O número grande na tela prende antes de qualquer explicação: "duas" e "R$ 12 mil" despertam curiosidade imediata. O advogado grava dentro do carro, um formato que vocês conseguem repetir entre uma reunião e outra. Entrou pela forma de abertura com valor em destaque, que nenhum outro vídeo desta seleção usa.</p>
+            <h4>Estrutura do roteiro a copiar</h4>
+            <ol><li><b>Abertura:</b> o número na tela ("até R$ X de benefício").</li><li><b>Explicação:</b> em que situação a mãe recebe mais do que imagina.</li><li><b>Requisito:</b> o que ela precisa ter para se encaixar.</li><li><b>Encerramento:</b> frase de fechamento indicada abaixo.</li></ol>
+            <h4>Como adaptar para vocês</h4>
+            <p>Usem só a forma deste vídeo, não a tese. Duas soluções corretas para o número: o valor retroativo de quem teve o bebê nos últimos cinco anos e nunca pediu, ou a mãe que trabalhava de carteira assinada e, ao mesmo tempo, contribuía como MEI. Calculem o valor de um caso típico e coloquem na tela.</p>
+            <div class="nota"><b>Atenção ao conteúdo original:</b> o anúncio soma licença da carteira assinada com salário-maternidade do INSS como se fossem dois benefícios. Dois salários-maternidade só cabem quando há duas atividades ao mesmo tempo (por exemplo, emprego com carteira e contribuição como MEI). Gravem a versão correta.</div>
+            <div class="format-pills"><span class="format-pill">Vertical 9:16</span><span class="format-pill">Até 50 seg</span><span class="format-pill">Gravado no carro</span><span class="format-pill">Valor escrito na tela</span></div>
+            <a class="source-link" href="https://www.facebook.com/ads/library/?id=845106268488981" target="_blank" rel="noopener">Ver na Meta Ad Library →</a>
+            <div class="cta-box">
+              <div class="cta-label">Frase de encerramento recomendada</div>
+              <div class="cta-text">"Dúvidas sobre este tema? Clique em saiba mais."</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap-tight">
+    <div class="section-eyebrow"><span class="num">04</span> · Próximo passo</div>
+    <h2>Assistam aos nove e marquem <em>os que mais combinam</em> com vocês.</h2>
+    <p>Antes do dia da gravação, cada uma escolhe os vídeos com que se sente mais à vontade e anota um caso real do escritório para usar como exemplo. Chegar com isso pronto é o que faz a gravação render em lote, sem travar diante da câmera.</p>
+    <p>Na gravação, cada roteiro vira duas ou três variações. Depois das primeiras semanas de anúncio, os números mostram quais aberturas trazem mais contato, e é nelas que concentramos as próximas gravações.</p>
+    <div class="signature"><strong>Pongui · Marketing Jurídico</strong> · Curadoria Mafissoni Advocacia · Novembro 2026</div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.video-wrap').forEach(wrap => {
+    const v = wrap.querySelector('video');
+    if (!v) return;
+    const markLoaded = () => wrap.classList.add('loaded');
+    v.addEventListener('loadedmetadata', markLoaded);
+    v.addEventListener('loadeddata', markLoaded);
+    if (v.readyState >= 1) markLoaded();
+  });
+</script>
+</body>
+</html>
